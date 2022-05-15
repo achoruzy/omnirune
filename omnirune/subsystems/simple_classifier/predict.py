@@ -2,5 +2,5 @@
 
 
 class Predictor:
-    def predict(input_data):
+    def predict(self, input_data):
         return 0
