@@ -10,14 +10,18 @@ class Detector:
         self.window_size = window_size
 
     def detect(self, frame: Frame):
-        step = self.window_size % 2
+        step = self.window_size // 2
         height, width, canal = frame.as_array.shape
-        
-        h_steps = [i*step for i in range((height % step) - 1)]
-        v_steps = [i*step for i in range((width % step) - 1)]
+
+        h_steps = [i*step for i in range((height // step) - 1)]
+        h_last = height-self.window_size
+        if h_last not in h_steps: h_steps.append(h_last)
+
+        v_steps = [i*step for i in range((width // step) - 1)]
+        v_last = width-self.window_size
+        if v_last not in v_steps: v_steps.append(v_last)
 
         patches = []
-
         for h in h_steps:
             for v in v_steps:
                 patches.append(frame.get_patch(h, v, self.window_size, self.window_size))
