@@ -13,7 +13,13 @@ class Detector:
         step = self.window_size % 2
         height, width, canal = frame.as_array.shape
         
-        h_coord = 0
-        v_coord = 0
+        h_steps = [i*step for i in range((height % step) - 1)]
+        v_steps = [i*step for i in range((width % step) - 1)]
 
-        patch_coords = ...
+        patches = []
+
+        for h in h_steps:
+            for v in v_steps:
+                patches.append(frame.get_patch(h, v, self.window_size, self.window_size))
+
+        return patches
