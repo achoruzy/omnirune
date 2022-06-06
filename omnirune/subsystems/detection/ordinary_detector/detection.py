@@ -21,9 +21,9 @@ class Detector:
         v_last = width-self.window_size
         if v_last not in v_steps: v_steps.append(v_last)
 
-        patches = []
+        windows = []
         for h in h_steps:
             for v in v_steps:
-                patches.append(frame.get_patch(h, v, self.window_size, self.window_size))
+                windows.append(frame.extract_region(h, v, self.window_size, self.window_size))
 
-        return patches
+        return windows
