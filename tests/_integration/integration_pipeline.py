@@ -10,8 +10,8 @@ from omnirune.loader import load_file_image
 def pipeline_integration_test():
     path = (Path(__file__).parent/'../../data/screenshots/001.jpg').resolve()
     frame = load_file_image(path)
-    windows = pipeline(frame)
-    print(len(windows), windows[0].shape)
+    recognitions = pipeline(frame)
+    print(len(recognitions), recognitions[:10])
 
 
 if __name__ == '__main__':
