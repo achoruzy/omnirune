@@ -1,6 +1,8 @@
 #   Copyright (C) 2022 DataVerft Arkadiusz Choruży
 
 
+from typing import List
+
 from omnirune.domain.frame import Frame
 
 
@@ -9,7 +11,7 @@ class Detector:
     def __init__(self, window_size: int):
         self.window_size = window_size
 
-    def detect(self, frame: Frame):
+    def detect(self, frame: Frame) -> List[List[int]]:
         step = self.window_size // 2
         height, width, canal = frame.as_array.shape
 
@@ -24,6 +26,6 @@ class Detector:
         windows = []
         for h in h_steps:
             for v in v_steps:
-                windows.append(frame.extract_region(h, v, self.window_size, self.window_size))
+                windows.append([h, v, self.window_size, self.window_size])
 
         return windows
