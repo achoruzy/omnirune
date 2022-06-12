@@ -11,7 +11,7 @@ def pipeline_integration_test():
     path = (Path(__file__).parent/'../../data/screenshots/001.jpg').resolve()
     frame = load_file_image(path)
     recognitions = pipeline(frame)
-    print(len(recognitions), recognitions[:10])
+    print(len(recognitions), recognitions[:4])
 
 
 if __name__ == '__main__':
