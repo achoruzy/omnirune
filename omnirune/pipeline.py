@@ -10,5 +10,5 @@ def pipeline(frame: Frame):
     """Function for processing image/video frame with CV detection and classifier for
     detected items. Works with given Frame object."""
     windows = Detector(window_size=108).detect(frame)
-    Classifier().predict(windows)
-    return windows
+    Classifier().predict(frame, windows)
+    return frame.recognitions
