@@ -20,6 +20,6 @@ def test_get_patches_raises_value_error_when_bad_params():
     with pytest.raises(ValueError):
         frame.extract_region(100, -1, 50, 50)
     with pytest.raises(ValueError):
-        frame.extract_region(10, 100, 600, 50)
+        frame.extract_region(10, 100, 60000, 50)
     with pytest.raises(ValueError):
-        frame.extract_region(10, 100, 50, 600)
+        frame.extract_region(10, 100, 50, 60000)

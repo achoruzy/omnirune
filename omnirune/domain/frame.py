@@ -39,12 +39,12 @@ class Frame:
     def extract_region(self, h_coord: int, v_coord: int, height: int, width: int) -> array:
         """Patch creation from the frame with given parameters of right upper corner and size."""
         if h_coord < 0 or v_coord < 0 or \
-        h_coord + height > self.height or \
-        v_coord + width > self.width:
+        h_coord + (height // 2) > self.height or \
+        v_coord + (width // 2) > self.width:
             raise ValueError('Given params cause patch to be outside the frame.')
 
         patch_arr = self.as_array[h_coord:h_coord+height, v_coord:v_coord+width, :]
         return patch_arr
 
     def add_recognition(self, recognition):
-        self.recognitions.append(recognition)
+        self._recognitions.append(recognition)

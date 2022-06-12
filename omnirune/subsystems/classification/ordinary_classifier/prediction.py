@@ -22,11 +22,10 @@ class Predictor:
             window = self.preprocess(frame, window_params)
             random.seed(sum(window.flatten().tolist()))
             preds = [random.random_sample() for i in range(len(RUNES))]
-            self.postprocess(frame, preds, window_params[:2])
+            self.postprocess(frame, preds, center=window_params[:2])
     
-    @staticmethod
-    def postprocess(frame:Frame, preds: array, center: List[int]):
+    def postprocess(self, frame:Frame, preds: array, center: List[int]):
         max_idx = preds.index(max(preds))
-        recognition = RUNES[max_idx]
-        recognition.update({'center': center})
+        recognition = RUNES[max_idx].copy()
+        recognition['center'] = center
         return frame.add_recognition(recognition)

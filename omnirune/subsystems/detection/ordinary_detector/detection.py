@@ -15,12 +15,12 @@ class Detector:
         step = self.window_size // 2
         height, width, canal = frame.as_array.shape
 
-        h_steps = [i*step for i in range((height // step) - 1)]
-        h_last = height-self.window_size
+        h_steps = [i*step for i in range(1, (height // step))]
+        h_last = height-(self.window_size // 2)
         if h_last not in h_steps: h_steps.append(h_last)
 
-        v_steps = [i*step for i in range((width // step) - 1)]
-        v_last = width-self.window_size
+        v_steps = [i*step for i in range(1, (width // step))]
+        v_last = width-(self.window_size // 2)
         if v_last not in v_steps: v_steps.append(v_last)
 
         windows = []
